@@ -1,9 +1,13 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const cors = require("cors");
 require("dotenv").config();
+
+const authRoutes = require("./routes/authRoutes");
 
 const app = express();
 
+app.use(cors());
 app.use(express.json());
 
 mongoose
@@ -14,6 +18,8 @@ mongoose
   .catch((error) => {
     console.log("MongoDB connection error:", error);
   });
+
+app.use("/api/auth", authRoutes);
 
 app.get("/", (req, res) => {
   res.send("TaskMatrix server is running");
