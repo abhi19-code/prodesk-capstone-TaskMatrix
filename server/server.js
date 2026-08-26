@@ -4,6 +4,7 @@ const cors = require("cors");
 require("dotenv").config();
 
 const authRoutes = require("./routes/authRoutes");
+const userRoutes = require("./routes/userRoutes");
 
 const app = express();
 
@@ -20,6 +21,7 @@ mongoose
   });
 
 app.use("/api/auth", authRoutes);
+app.use("/api/users", userRoutes);
 
 app.get("/", (req, res) => {
   res.send("TaskMatrix server is running");
