@@ -1,9 +1,12 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
+
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -27,7 +30,7 @@ function Login() {
 
       if (response.ok) {
         localStorage.setItem("token", data.token);
-        setMessage("Login successful");
+        navigate("/dashboard");
       } else {
         setMessage(data.message);
       }
@@ -48,7 +51,8 @@ function Login() {
           onChange={(e) => setEmail(e.target.value)}
         />
 
-        <br /><br />
+        <br />
+        <br />
 
         <input
           type="password"
@@ -57,7 +61,8 @@ function Login() {
           onChange={(e) => setPassword(e.target.value)}
         />
 
-        <br /><br />
+        <br />
+        <br />
 
         <button type="submit">Login</button>
       </form>

@@ -1,10 +1,13 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Register() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
+
+  const navigate = useNavigate();
 
   const handleRegister = async (e) => {
     e.preventDefault();
@@ -27,7 +30,11 @@ function Register() {
 
       const data = await response.json();
 
-      setMessage(data.message);
+      if (response.ok) {
+        navigate("/login");
+      } else {
+        setMessage(data.message);
+      }
     } catch (error) {
       setMessage("Registration failed");
     }
@@ -45,7 +52,8 @@ function Register() {
           onChange={(e) => setName(e.target.value)}
         />
 
-        <br /><br />
+        <br />
+        <br />
 
         <input
           type="email"
@@ -54,7 +62,8 @@ function Register() {
           onChange={(e) => setEmail(e.target.value)}
         />
 
-        <br /><br />
+        <br />
+        <br />
 
         <input
           type="password"
@@ -63,7 +72,8 @@ function Register() {
           onChange={(e) => setPassword(e.target.value)}
         />
 
-        <br /><br />
+        <br />
+        <br />
 
         <button type="submit">Register</button>
       </form>

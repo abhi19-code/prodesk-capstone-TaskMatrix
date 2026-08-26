@@ -1,33 +1,24 @@
-import { useState } from "react";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import Login from "./Login";
 import Register from "./Register";
 import Dashboard from "./Dashboard";
 
 function App() {
-  const [page, setPage] = useState("login");
-
   return (
-    <div>
+    <BrowserRouter>
       <h1>TaskMatrix</h1>
 
-      <button onClick={() => setPage("login")}>
-        Login
-      </button>
+      <nav>
+        <Link to="/login">Login</Link>{" "}
+        <Link to="/register">Register</Link>
+      </nav>
 
-      <button onClick={() => setPage("register")}>
-        Register
-      </button>
-
-      <button onClick={() => setPage("dashboard")}>
-        Dashboard
-      </button>
-
-      {page === "login" && <Login />}
-
-      {page === "register" && <Register />}
-
-      {page === "dashboard" && <Dashboard />}
-    </div>
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

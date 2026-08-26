@@ -1,14 +1,17 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Dashboard() {
   const [message, setMessage] = useState("");
   const [user, setUser] = useState(null);
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     const token = localStorage.getItem("token");
 
     if (!token) {
-      window.location.href = "/";
+      navigate("/login");
       return;
     }
 
@@ -27,7 +30,7 @@ function Dashboard() {
 
         if (!response.ok) {
           localStorage.removeItem("token");
-          window.location.href = "/";
+          navigate("/login");
           return;
         }
 
@@ -35,16 +38,16 @@ function Dashboard() {
         setUser(data.user);
       } catch (error) {
         localStorage.removeItem("token");
-        window.location.href = "/";
+        navigate("/login");
       }
     };
 
     getProfile();
-  }, []);
+  }, [navigate]);
 
   const handleLogout = () => {
     localStorage.removeItem("token");
-    window.location.href = "/";
+    navigate("/login");
   };
 
   return (
