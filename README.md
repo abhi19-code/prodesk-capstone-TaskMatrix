@@ -1,48 +1,100 @@
 # TaskMatrix
 
-TaskMatrix is an Agile Project Management application designed to help small development teams organize projects, manage tasks, assign work, and track project progress from one place.
+## Agile Project Management Platform
 
-## Project Track
+TaskMatrix is a web-based Agile project management application designed to help teams organize projects, manage tasks, assign work, and track project progress from one place.
 
-**TaskMatrix — Agile Project Management**
+## Project Information
 
-## Project Goal
+* **Project Name:** TaskMatrix
+* **Application Type:** Agile Project Management
+* **Capstone Phase:** Sprint 13
+* **Development Track:** Full-Stack Web Application
 
-The goal of TaskMatrix is to provide a simple project management platform where teams can create projects, manage tasks, assign tasks to team members, update task status, and monitor overall project progress.
+## Product Goal
 
-The application will focus on the main features needed by a small development team without adding unnecessary complexity.
+The goal of TaskMatrix is to provide a simple and organized workspace where Agile teams can manage their projects and tasks.
+
+The MVP will focus on the main project-management workflow instead of adding unnecessary advanced features.
 
 ## Target Users
 
-### Admin
+TaskMatrix is designed for:
 
-Admins can:
+* Project managers
+* Developers
+* Team members
+* Small Agile teams
 
-* Create and manage projects
-* Add team members to projects
-* Create and manage tasks
-* Assign tasks to team members
-* View project progress
+## Core MVP Features
 
-### Team Member
+### P0 — Must Have
 
-Team members can:
+These features are required for the minimum functional product.
 
-* View projects they are part of
-* View assigned tasks
-* Update task status
-* Create or update tasks when permitted
-* Track their current work
+1. **User Authentication**
+   * User login
+   * User registration
+   * Secure authentication
+
+2. **Project Dashboard**
+   * View projects
+   * View project progress
+   * View task summary
+   * Access project and task information
+
+3. **Project Management**
+   * Create projects
+   * View projects
+   * Update project information
+
+4. **Task Management**
+   * Create tasks
+   * View tasks
+   * Update tasks
+   * Assign tasks to team members
+
+5. **Task Details**
+   * Task title
+   * Task description
+   * Task status
+   * Task priority
+   * Assigned member
+   * Due date
+
+6. **Task Status Tracking**
+   * To Do
+   * In Progress
+   * Completed
+
+### P1 — Important Features
+
+These features will improve the main workflow after the core MVP.
+
+* Task priority management
+* Team member information
+* Basic project progress tracking
+* Task assignment
+* Project filtering
+
+### P2 — Future Features
+
+These features are outside the initial MVP scope.
+
+* Advanced analytics
+* Notifications
+* Team chat
+* Calendar integration
+* Third-party integrations
+* AI-powered project assistance
 
 ## Technology Stack
 
 ### Frontend
 
 * React
-* JavaScript
-* HTML
 * CSS
-* Redux Toolkit
+* JavaScript
 
 ### Backend
 
@@ -55,140 +107,118 @@ Team members can:
 
 ### Authentication
 
-* JSON Web Token (JWT)
+* JWT-based authentication
 
-### Design and Architecture
+### Development Tools
 
-* Figma for UI/UX wireframes
-* Draw.io for system architecture diagrams
-* GitHub for source code and version control
+* Git
+* GitHub
+* Figma
+* Visual Studio Code
 
-## Core Features
+### Planned Deployment
 
-### Priority 0 — Minimum Viable Product
+* Frontend: Vercel
+* Backend: Render
 
-These are the main features required for the first working version.
+## Application Structure
 
-1. User registration and login
-2. User authentication
-3. Project creation
-4. Project management
-5. Task creation
-6. Task assignment
-7. Task priority
-8. Task status management
-9. Project members
-10. Basic project dashboard
+TaskMatrix will contain the following main areas:
 
-### Priority 1 — Important Features
+1. Authentication
+2. Dashboard
+3. Projects
+4. Tasks
+5. Task Details
 
-These features will improve the main user experience.
+The interface will use a simple dashboard layout so users can move between projects and tasks easily.
 
-1. Task search
-2. Task filtering
-3. Project progress tracking
-4. Team member management
-5. User profile
-6. Improved dashboard information
+## MVP User Flow
 
-### Priority 2 — Stretch Features
+1. User opens TaskMatrix.
+2. User signs in or creates an account.
+3. User reaches the main dashboard.
+4. User selects a project.
+5. User views the project's tasks.
+6. User creates or updates a task.
+7. User assigns the task to a team member.
+8. User changes the task status as work progresses.
+9. User opens the task details when more information is required.
 
-These features can be added if there is enough development time.
+## Phase 2 — UI/UX Design
 
-1. Task comments
-2. Activity history
-3. Due date reminders
-4. Notifications
-5. Additional dashboard statistics
+The UI/UX was designed in Figma before application development begins.
 
-## Task Statuses
+The required core viewports are:
 
-Tasks will use the following basic statuses:
+### 1. Authentication Screen
 
-* To Do
-* In Progress
-* Done
+The authentication screen contains:
 
-## Task Priorities
+* TaskMatrix branding
+* Email input
+* Password input
+* Login button
+* Registration option
 
-Tasks will have three priority levels:
+### 2. Main Dashboard
 
-* Low
-* Medium
-* High
+The dashboard contains:
 
-## Main Application Screens
+* Navigation/sidebar
+* Project overview
+* Task summary
+* Project list
+* Task status information
+* User information
 
-The planned application will contain the following main screens:
+### 3. Task Details
 
-1. Login
-2. Registration
-3. Dashboard
-4. Projects
-5. Project Details
-6. Task Details
-7. Team Members
-8. User Profile
+The task details screen contains:
 
-The first UI/UX design phase will focus on at least three core screens as required by the Sprint 13 specification.
+* Task title
+* Task description
+* Task status
+* Task priority
+* Assigned team member
+* Project information
+* Due date
+* Task actions
 
-## Basic User Flow
+## Figma Design
 
-```text
-User
-  |
-  v
-Login / Register
-  |
-  v
-Dashboard
-  |
-  +----> Projects
-  |        |
-  |        v
-  |    Project Details
-  |        |
-  |        +----> Tasks
-  |        |
-  |        +----> Team Members
-  |
-  v
-User Profile
-```
+The TaskMatrix UI/UX wireframes were created in Figma.
 
-## Development Plan
+**Public Figma File:**  
+https://www.figma.com/design/ceHhp5SWeKNZNnhUb3M8Ee/TaskMatrix-%E2%80%94-UI-UX-Design?node-id=2-3&t=2tvCHFJJpKiJljW3-1
 
-### Phase 1 — Base MVP
+### Core Wireframes
 
-* Project planning
-* Product requirements document
-* Repository setup
-* Basic application structure
+* Login Screen
+* Dashboard Screen
+* Task Details Screen
 
-### Phase 2 — Priority 1
+## Project Scope
 
-* UI/UX wireframes
-* Authentication screens
-* Dashboard design
-* Project and task management screens
+The first version of TaskMatrix will focus on project and task management.
 
-### Phase 3 — Architecture
+The project will prioritize a clear user experience and the required core functionality before implementing advanced features.
 
-* MongoDB data model
-* Entity Relationship Diagram
-* Frontend state management diagram
-* API endpoint planning
+## Development Approach
 
-### Future Development
+Development will be completed in stages:
 
-After the planning and design phase, the application will be developed in small stages. Each feature will be tested before moving to the next feature.
-
-## Project Status
-
-**Current Status:** Planning and Architecture
-
-Application development has not started yet.
+1. Product planning
+2. UI/UX design
+3. Frontend development
+4. Backend API development
+5. Database integration
+6. Authentication
+7. Testing
+8. Deployment
 
 ## Repository
 
-This repository contains the planning, design, architecture, and future source code for the TaskMatrix capstone project.
+This project is maintained in the public GitHub repository:
+
+**prodesk-capstone-TaskMatrix**
