@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Login from "./Login";
 import Register from "./Register";
+import Dashboard from "./Dashboard";
 
 function App() {
   const [page, setPage] = useState("login");
@@ -17,7 +18,15 @@ function App() {
         Register
       </button>
 
-      {page === "login" ? <Login /> : <Register />}
+      <button onClick={() => setPage("dashboard")}>
+        Dashboard
+      </button>
+
+      {page === "login" && <Login />}
+
+      {page === "register" && <Register />}
+
+      {page === "dashboard" && <Dashboard />}
     </div>
   );
 }
