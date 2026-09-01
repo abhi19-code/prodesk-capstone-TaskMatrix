@@ -1,6 +1,8 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
+const helmet = require("helmet");
+const rateLimit = require("express-rate-limit");
 require("dotenv").config();
 
 const authRoutes = require("./routes/authRoutes");
@@ -9,8 +11,21 @@ const taskRoutes = require("./routes/taskRoutes");
 
 const app = express();
 
+app.use(helmet());
+
 app.use(cors());
+
 app.use(express.json());
+
+const apiLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 100,
+  message: "Too many requests. Please try again later.",
+  standardHeaders: true,
+  legacyHeaders: false
+});
+
+app.use("/api", apiLimiter);
 
 mongoose
   .connect(process.env.MONGO_URI)
