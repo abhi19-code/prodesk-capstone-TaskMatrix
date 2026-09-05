@@ -1,6 +1,7 @@
 const express = require("express");
 const Task = require("../models/Task");
 const authMiddleware = require("../middleware/authMiddleware");
+const enrichTask = require("../services/aiService");
 
 const router = express.Router();
 
@@ -23,17 +24,21 @@ router.post("/", authMiddleware, async (req, res) => {
       });
     }
 
-    const task = new Task({
-      title,
-      description,
-      status,
-      priority,
-      assignedMember,
-      dueDate,
-      ownerId: req.user.userId
-    });
+   const aiData = await enrichTask(title, description);
 
-    await task.save();
+const task = new Task({
+  title,
+  description,
+  status,
+  priority,
+  assignedMember,
+  dueDate,
+  category: aiData.category,
+  aiSummary: aiData.summary,
+  ownerId: req.user.userId
+});
+
+await task.save();
 
     res.status(201).json({
       message: "Task created successfully",

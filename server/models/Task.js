@@ -30,6 +30,15 @@ const taskSchema = new mongoose.Schema({
     type: String,
     default: ""
   },
+  category: {
+  type: String,
+  default: ""
+},
+
+aiSummary: {
+  type: String,
+  default: ""
+},
 
   ownerId: {
     type: mongoose.Schema.Types.ObjectId,
