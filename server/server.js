@@ -4,6 +4,8 @@ const cors = require("cors");
 const helmet = require("helmet");
 const rateLimit = require("express-rate-limit");
 const morgan = require("morgan");
+const fs = require("fs");
+const path = require("path");
 require("dotenv").config();
 
 const authRoutes = require("./routes/authRoutes");
@@ -14,12 +16,36 @@ const aiRoutes = require("./routes/aiRoutes");
 const app = express();
 
 app.use(helmet());
-app.use(morgan("combined"));
 
-app.use(cors());
+const logsFolder = path.join(__dirname, "logs");
+fs.mkdirSync(logsFolder, { recursive: true });
+
+const accessLogStream = fs.createWriteStream(
+  path.join(logsFolder, "access.log"),
+  { flags: "a" }
+);
+
+app.use(morgan("combined", { stream: accessLogStream }));
+
+const allowedOrigins = (process.env.CLIENT_URLS || "")
+  .split(",")
+  .map((url) => url.trim())
+  .filter(Boolean);
+
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      if (!origin || allowedOrigins.length === 0 || allowedOrigins.includes(origin)) {
+        callback(null, true);
+        return;
+      }
+
+      callback(new Error("Origin not allowed by CORS"));
+    }
+  })
+);
 
 app.use(express.json());
-
 
 const apiLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
@@ -34,10 +60,10 @@ app.use("/api", apiLimiter);
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => {
-    console.log("MongoDB connected");
+    process.stdout.write("MongoDB connected\n");
   })
   .catch((error) => {
-    console.log("MongoDB connection error:", error);
+    process.stderr.write(`MongoDB connection error: ${error.message}\n`);
   });
 
 app.use("/api/auth", authRoutes);
@@ -52,5 +78,5 @@ app.get("/", (req, res) => {
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+  process.stdout.write(`Server running on port ${PORT}\n`);
 });

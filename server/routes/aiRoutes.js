@@ -26,7 +26,7 @@ router.post("/", async (req, res) => {
       response: interaction.output_text
     });
   } catch (error) {
-    console.log("AI request error:", error);
+    console.error("AI request error:", error.message);
 
     res.status(500).json({
       message: "AI request failed"

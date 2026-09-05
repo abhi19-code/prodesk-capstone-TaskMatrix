@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Dashboard.css";
 
-const API_URL = "http://localhost:5000/api/tasks";
+const API_URL = `${import.meta.env.VITE_API_URL}/tasks`;
 
 function Dashboard() {
   const [message, setMessage] = useState("");
@@ -33,7 +33,7 @@ function Dashboard() {
     const loadDashboard = async () => {
       try {
         const profileResponse = await fetch(
-          "http://localhost:5000/api/users/profile",
+          `${import.meta.env.VITE_API_URL}/users/profile`,
           {
             headers: {
               Authorization: `Bearer ${token}`
