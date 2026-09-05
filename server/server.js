@@ -9,6 +9,7 @@ require("dotenv").config();
 const authRoutes = require("./routes/authRoutes");
 const userRoutes = require("./routes/userRoutes");
 const taskRoutes = require("./routes/taskRoutes");
+const aiRoutes = require("./routes/aiRoutes");
 
 const app = express();
 
@@ -18,6 +19,7 @@ app.use(morgan("combined"));
 app.use(cors());
 
 app.use(express.json());
+
 
 const apiLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
@@ -41,6 +43,7 @@ mongoose
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/tasks", taskRoutes);
+app.use("/api/ai", aiRoutes);
 
 app.get("/", (req, res) => {
   res.send("TaskMatrix server is running");
